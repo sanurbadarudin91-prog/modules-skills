@@ -8,15 +8,15 @@ version: '1.0'
 # Smart Contract Access Control Review
 
 ## Overview
-Ensures only authorized actors can invoke sensitive functions. Improper access control is a leading cause of contract exploitation.
+Ensures only authorized actors can invoke sensitive functions. Improper access control is a leading cause of contract exploitation (e.g., unauthorized funds withdrawal).
 
 ## Workflow
-1. **Identify**: Map all functions, state-changing actions, and roles (owner, admin, user).
-2. **Review**: Verify authorization logic. Prefer `AccessControl` for roles or `Ownable` for single-admin.
-3. **Emergency**: Audit pause/emergency-stop mechanisms for safety.
+1. **Identify**: Map all functions, state-changing actions, and roles.
+2. **Review**: Verify implementation of authorization logic.
+3. **Emergency**: Audit pause mechanisms.
 
 ## Security Rules
-- Enforce strict role-based or ownership validation on all sensitive functions (use OpenZeppelin standard `AccessControl`).
+- Enforce strict role-based or ownership validation on all sensitive functions (use OpenZeppelin standard `AccessControl` or `Ownable`).
 - Validate the caller (`msg.sender`) before all critical state changes.
 - All admin privilege modifications require /unlock_owner validation context.
 - Implement an emergency `pause` function; ensure only authorized owners can trigger it.
